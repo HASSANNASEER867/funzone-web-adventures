@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight, Info, MapPin, ArrowRight } from "lucide-react";
@@ -6,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 // Zone data
 const zones = [
@@ -183,17 +183,16 @@ const Experience = () => {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-8">Interactive Park Map</h2>
             
-            <div className="relative w-full max-w-4xl mx-auto">
-              {/* Base Map Image */}
-              <img 
-                src="https://images.unsplash.com/photo-1580668095433-6ab1d531fad4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-                alt="FUN ZONE Park Map" 
-                className="w-full rounded-lg shadow-lg"
-              />
+            <div className="relative w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg">
+              <AspectRatio ratio={16/9} className="bg-gray-100">
+                <img 
+                  src="https://images.unsplash.com/photo-1580668095433-6ab1d531fad4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                  alt="FUN ZONE Park Map" 
+                  className="w-full h-full object-cover"
+                />
+              </AspectRatio>
               
-              {/* Interactive Zone Markers */}
               {zones.map((zone, index) => {
-                // Calculate position based on index for demo purposes
                 const topPercentage = 30 + (index % 4) * 15;
                 const leftPercentage = 20 + (Math.floor(index / 4) * 30);
                 
@@ -210,10 +209,10 @@ const Experience = () => {
                       setIsMapView(false);
                     }}
                   >
-                    <div className={`${zone.color} h-6 w-6 rounded-full flex items-center justify-center animate-pulse`}>
+                    <div className={`${zone.color} h-6 w-6 rounded-full flex items-center justify-center animate-pulse shadow-md`}>
                       <MapPin className="h-4 w-4 text-white" />
                     </div>
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-32 bg-white p-2 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-32 bg-white p-2 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
                       <p className="text-xs font-medium text-center">{zone.name}</p>
                     </div>
                   </div>
