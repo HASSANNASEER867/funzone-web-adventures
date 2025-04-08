@@ -1,581 +1,472 @@
 
-import React from "react";
+import React, { useState } from "react";
+import { MapPin, Clock, Ticket, DollarSign, HelpCircle, Info, Mail as MailIcon, Phone as PhoneIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  Clock, MapPin, Ticket, CalendarDays, Info, Helpdesk, 
-  Car, Bus, Train, Accessibility, Umbrella, Baby, 
-  CreditCard, DollarSign, ShoppingBag, BaggageClaim
-} from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Card } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const Information = () => {
+  const [activeTab, setActiveTab] = useState("hours");
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <Navbar />
-      
+
       <div className="pt-24 pb-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-funzone-teal via-funzone-blue to-funzone-purple bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-funzone-green via-funzone-blue to-funzone-teal bg-clip-text text-transparent">
               Park Information
             </h1>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Everything you need to know to plan your perfect visit to FUN ZONE
+              Everything you need to know for a magical visit to FUN ZONE
             </p>
           </div>
-          
-          <div className="mb-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl shadow-sm p-6 flex items-start">
-              <Clock className="h-10 w-10 text-funzone-blue mr-4 flex-shrink-0" />
-              <div>
-                <h3 className="font-bold text-lg mb-1">Park Hours</h3>
-                <p className="text-gray-700 text-sm">Monday - Friday: 10:00 AM - 8:00 PM</p>
-                <p className="text-gray-700 text-sm">Weekends & Holidays: 9:00 AM - 10:00 PM</p>
-                <p className="text-gray-500 text-xs mt-1">Hours may vary seasonally</p>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-sm p-6 flex items-start">
-              <Ticket className="h-10 w-10 text-funzone-green mr-4 flex-shrink-0" />
-              <div>
-                <h3 className="font-bold text-lg mb-1">Ticket Prices</h3>
-                <p className="text-gray-700 text-sm">Adults (12+): $89.99</p>
-                <p className="text-gray-700 text-sm">Children (3-11): $69.99</p>
-                <p className="text-gray-700 text-sm">Seniors (65+): $79.99</p>
-                <p className="text-gray-500 text-xs mt-1">Multi-day passes available</p>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-sm p-6 flex items-start">
-              <MapPin className="h-10 w-10 text-funzone-red mr-4 flex-shrink-0" />
-              <div>
-                <h3 className="font-bold text-lg mb-1">Location</h3>
-                <p className="text-gray-700 text-sm">123 Adventure Way</p>
-                <p className="text-gray-700 text-sm">Fun City, FC 12345</p>
-                <a href="#map" className="text-funzone-blue text-sm font-medium hover:underline">View Map</a>
-              </div>
-            </div>
-          </div>
-          
-          <Tabs defaultValue="planning" className="w-full">
+
+          <Tabs defaultValue="hours" value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="flex mb-8 overflow-x-auto pb-2 justify-center">
-              <TabsTrigger value="planning" className="flex items-center gap-2">
-                <CalendarDays className="h-4 w-4" />
-                Planning Your Visit
+              <TabsTrigger value="hours" className="flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                Opening Hours
               </TabsTrigger>
-              <TabsTrigger value="transportation" className="flex items-center gap-2">
-                <Car className="h-4 w-4" />
-                Transportation
+              <TabsTrigger value="tickets" className="flex items-center gap-2">
+                <Ticket className="h-4 w-4" />
+                Tickets & Pricing
               </TabsTrigger>
               <TabsTrigger value="facilities" className="flex items-center gap-2">
-                <Helpdesk className="h-4 w-4" />
-                Facilities & Services
+                <MapPin className="h-4 w-4" />
+                Services & Facilities
               </TabsTrigger>
               <TabsTrigger value="faqs" className="flex items-center gap-2">
-                <Info className="h-4 w-4" />
+                <HelpCircle className="h-4 w-4" />
                 FAQs
               </TabsTrigger>
             </TabsList>
-            
-            <TabsContent value="planning" className="mt-0">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h2 className="text-2xl font-bold mb-6">Best Times to Visit</h2>
-                  <div className="space-y-4">
-                    <div className="bg-white p-5 rounded-lg shadow-sm">
-                      <h3 className="font-medium mb-2">Weekdays (Monday-Thursday)</h3>
-                      <p className="text-gray-600 text-sm">Experience shorter wait times and fewer crowds, especially during non-holiday periods.</p>
-                    </div>
-                    <div className="bg-white p-5 rounded-lg shadow-sm">
-                      <h3 className="font-medium mb-2">Early Morning or Evening</h3>
-                      <p className="text-gray-600 text-sm">The first two hours after opening and last two hours before closing typically see reduced wait times for popular attractions.</p>
-                    </div>
-                    <div className="bg-white p-5 rounded-lg shadow-sm">
-                      <h3 className="font-medium mb-2">Off-Peak Seasons</h3>
-                      <p className="text-gray-600 text-sm">Mid-January through March, September (after Labor Day), and early November (before Thanksgiving) typically have lower attendance.</p>
+
+            {/* Opening Hours Content */}
+            <TabsContent value="hours" className="mt-0">
+              <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div>
+                    <h2 className="text-2xl font-bold mb-6 flex items-center">
+                      <Clock className="mr-2 h-5 w-5 text-funzone-blue" />
+                      Regular Opening Hours
+                    </h2>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center pb-2 border-b border-gray-100">
+                        <span className="font-medium">Monday - Thursday</span>
+                        <span className="text-gray-600">10:00 AM - 8:00 PM</span>
+                      </div>
+                      <div className="flex justify-between items-center pb-2 border-b border-gray-100">
+                        <span className="font-medium">Friday</span>
+                        <span className="text-gray-600">10:00 AM - 10:00 PM</span>
+                      </div>
+                      <div className="flex justify-between items-center pb-2 border-b border-gray-100">
+                        <span className="font-medium">Saturday</span>
+                        <span className="text-gray-600">9:00 AM - 11:00 PM</span>
+                      </div>
+                      <div className="flex justify-between items-center pb-2 border-b border-gray-100">
+                        <span className="font-medium">Sunday</span>
+                        <span className="text-gray-600">9:00 AM - 9:00 PM</span>
+                      </div>
                     </div>
                   </div>
-                  
-                  <h2 className="text-2xl font-bold mt-8 mb-6">What to Bring</h2>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center text-center">
-                      <Umbrella className="h-8 w-8 text-funzone-blue mb-2" />
-                      <p className="text-sm">Weather Protection<br/>(Sunscreen, Hat, Poncho)</p>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center text-center">
-                      <ShoppingBag className="h-8 w-8 text-funzone-green mb-2" />
-                      <p className="text-sm">Small Backpack<br/>for Personal Items</p>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center text-center">
-                      <CreditCard className="h-8 w-8 text-funzone-purple mb-2" />
-                      <p className="text-sm">Credit/Debit Cards<br/>& Identification</p>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center text-center">
-                      <Baby className="h-8 w-8 text-funzone-orange mb-2" />
-                      <p className="text-sm">Essentials for Children<br/>(if applicable)</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div>
-                  <h2 className="text-2xl font-bold mb-6">Ticket Information</h2>
-                  <div className="space-y-4">
-                    <div className="bg-white p-5 rounded-lg shadow-sm border-l-4 border-funzone-blue">
-                      <h3 className="font-medium mb-2">Standard Day Pass</h3>
-                      <p className="text-gray-600 text-sm mb-2">Full day access to all seven zones and standard attractions.</p>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm">
-                          Adults: $89.99<br/>
-                          Children: $69.99<br/>
-                          Seniors: $79.99
-                        </span>
-                        <button className="bg-funzone-blue hover:bg-funzone-blue/90 text-white text-sm font-medium py-1 px-4 rounded-full transition-colors">
-                          Buy Now
-                        </button>
+
+                  <div>
+                    <h2 className="text-2xl font-bold mb-6 flex items-center">
+                      <Info className="mr-2 h-5 w-5 text-funzone-purple" />
+                      Special Hours
+                    </h2>
+                    <div className="space-y-4">
+                      <div className="p-4 bg-funzone-purple/10 rounded-lg">
+                        <h3 className="font-bold text-funzone-purple mb-2">Summer Season (June - August)</h3>
+                        <p className="text-gray-700">Extended hours until midnight on Fridays and Saturdays!</p>
                       </div>
-                    </div>
-                    
-                    <div className="bg-white p-5 rounded-lg shadow-sm border-l-4 border-funzone-purple">
-                      <h3 className="font-medium mb-2">Premium Fast Pass</h3>
-                      <p className="text-gray-600 text-sm mb-2">Standard admission plus skip-the-line access on most attractions.</p>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm">
-                          Adults: $139.99<br/>
-                          Children: $119.99<br/>
-                          Seniors: $129.99
-                        </span>
-                        <button className="bg-funzone-purple hover:bg-funzone-purple/90 text-white text-sm font-medium py-1 px-4 rounded-full transition-colors">
-                          Buy Now
-                        </button>
+                      <div className="p-4 bg-funzone-green/10 rounded-lg">
+                        <h3 className="font-bold text-funzone-green mb-2">Holiday Hours</h3>
+                        <p className="text-gray-700">Special extended hours during public holidays and school breaks.</p>
                       </div>
-                    </div>
-                    
-                    <div className="bg-white p-5 rounded-lg shadow-sm border-l-4 border-funzone-green">
-                      <h3 className="font-medium mb-2">Multi-Day Pass (3 Days)</h3>
-                      <p className="text-gray-600 text-sm mb-2">Three consecutive days of park admission at a discounted rate.</p>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm">
-                          Adults: $229.99<br/>
-                          Children: $179.99<br/>
-                          Seniors: $199.99
-                        </span>
-                        <button className="bg-funzone-green hover:bg-funzone-green/90 text-white text-sm font-medium py-1 px-4 rounded-full transition-colors">
-                          Buy Now
-                        </button>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white p-5 rounded-lg shadow-sm border-l-4 border-funzone-yellow">
-                      <h3 className="font-medium mb-2">Annual Pass</h3>
-                      <p className="text-gray-600 text-sm mb-2">Unlimited visits for 12 months plus member perks and discounts.</p>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm">
-                          Adults: $299.99<br/>
-                          Children: $249.99<br/>
-                          Seniors: $279.99
-                        </span>
-                        <button className="bg-funzone-yellow hover:bg-funzone-yellow/90 text-black text-sm font-medium py-1 px-4 rounded-full transition-colors">
-                          Buy Now
-                        </button>
+                      <div className="p-4 bg-funzone-red/10 rounded-lg">
+                        <h3 className="font-bold text-funzone-red mb-2">Maintenance Days</h3>
+                        <p className="text-gray-700">The park is closed on the first Tuesday of every month for maintenance.</p>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="transportation" className="mt-0">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h2 className="text-2xl font-bold mb-6">Getting Here</h2>
-                  <div className="space-y-4">
-                    <div className="bg-white p-5 rounded-lg shadow-sm flex">
-                      <Car className="h-10 w-10 text-funzone-blue mr-4 flex-shrink-0" />
-                      <div>
-                        <h3 className="font-medium mb-2">By Car</h3>
-                        <p className="text-gray-600 text-sm mb-2">
-                          Our address is 123 Adventure Way, Fun City, FC 12345. Follow signs from major highways. GPS coordinates: 12.345678, -98.765432
-                        </p>
-                        <h4 className="font-medium text-sm">Parking:</h4>
-                        <p className="text-gray-600 text-sm">
-                          Standard: $25 per day<br/>
-                          Premium (closer to entrance): $40 per day<br/>
-                          Oversized vehicles: $35 per day
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white p-5 rounded-lg shadow-sm flex">
-                      <Bus className="h-10 w-10 text-funzone-green mr-4 flex-shrink-0" />
-                      <div>
-                        <h3 className="font-medium mb-2">By Shuttle</h3>
-                        <p className="text-gray-600 text-sm">
-                          Complimentary shuttle service runs from official partner hotels every 30 minutes. See the concierge at your hotel for the schedule.
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white p-5 rounded-lg shadow-sm flex">
-                      <Train className="h-10 w-10 text-funzone-red mr-4 flex-shrink-0" />
-                      <div>
-                        <h3 className="font-medium mb-2">By Public Transportation</h3>
-                        <p className="text-gray-600 text-sm">
-                          The Fun City Metro Line stops at "FUN ZONE Main Gate" station. Trains run every 15 minutes from downtown. Bus routes 42, 53, and 67 also stop at our main entrance.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div>
-                  <h2 className="text-2xl font-bold mb-6">Park Map & Navigation</h2>
-                  <div className="bg-white p-5 rounded-lg shadow-sm mb-6">
-                    <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden mb-4">
-                      <img 
-                        src="https://images.unsplash.com/photo-1535184611696-30bdd9f984c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                        alt="Park Map" 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <p className="text-gray-600 text-sm">
-                      Interactive maps are available in our mobile app and at information kiosks throughout the park. Free paper maps are provided at the entrance.
-                    </p>
-                    <div className="mt-4 flex space-x-4">
-                      <a 
-                        href="#" 
-                        className="bg-funzone-blue hover:bg-funzone-blue/90 text-white text-sm font-medium py-2 px-4 rounded-md transition-colors inline-flex items-center"
-                      >
-                        <span>Download PDF Map</span>
-                      </a>
-                      <a 
-                        href="#" 
-                        className="border border-funzone-blue text-funzone-blue hover:bg-funzone-blue/10 text-sm font-medium py-2 px-4 rounded-md transition-colors inline-flex items-center"
-                      >
-                        <span>Download Mobile App</span>
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <h2 className="text-2xl font-bold mb-6" id="map">Park Location</h2>
-                  <div className="bg-white p-5 rounded-lg shadow-sm">
-                    <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-                      <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.67890!2d-73.123456!3d40.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM40uMTIzNDU2LC03My4xMjM0NTY!5e0!3m2!1sen!2sus!4v1234567890"
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title="FUN ZONE Map Location"
-                      ></iframe>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="facilities" className="mt-0">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <Accessibility className="h-8 w-8 text-funzone-blue mr-3" />
-                    <h2 className="text-xl font-bold">Accessibility</h2>
-                  </div>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Wheelchair accessible pathways throughout the park
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Complimentary wheelchair and ECV rentals (limited availability)
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Service animals welcome (restrictions apply on some rides)
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Accessible restrooms in all zones
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Special access passes available for guests with disabilities
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <Baby className="h-8 w-8 text-funzone-purple mr-3" />
-                    <h2 className="text-xl font-bold">Family Services</h2>
-                  </div>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Baby Care Centers in each zone with changing tables, nursing areas, and supplies
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Stroller rentals (single: $15/day, double: $25/day)
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Child swap service for parents at thrill rides
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Family restrooms throughout the park
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Lost children facilities at Guest Services
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <Helpdesk className="h-8 w-8 text-funzone-red mr-3" />
-                    <h2 className="text-xl font-bold">Guest Services</h2>
-                  </div>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Information kiosks in all zones
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      First aid stations with trained medical staff
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Lost and found service at the Main Guest Relations office
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      ATMs located throughout the park
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Complimentary Wi-Fi in designated areas
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Phone charging stations ($5 per hour)
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <DollarSign className="h-8 w-8 text-funzone-green mr-3" />
-                    <h2 className="text-xl font-bold">Payment Options</h2>
-                  </div>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      All major credit/debit cards accepted throughout the park
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      FUN ZONE cashless wristbands (load funds at kiosks)
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Mobile payment options (Apple Pay, Google Pay, Samsung Pay)
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Cash acceptance at select locations only
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Gift cards available for purchase
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <BaggageClaim className="h-8 w-8 text-funzone-yellow mr-3" />
-                    <h2 className="text-xl font-bold">Storage & Lockers</h2>
-                  </div>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Small lockers (fits backpack): $12/day
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Medium lockers (fits multiple bags): $15/day
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Large lockers (fits luggage): $20/day
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Free temporary storage at major attractions
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Electronic access system using park tickets
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <ShoppingBag className="h-8 w-8 text-funzone-orange mr-3" />
-                    <h2 className="text-xl font-bold">Shopping</h2>
-                  </div>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Zone-themed souvenir shops in each area
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Character merchandise and collectibles
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      FUN ZONE apparel and accessories
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Free package pickup service - shop and collect at the exit
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-funzone-green mr-2">✓</span>
-                      Shipping services available for large purchases
-                    </li>
+
+                <div className="mt-8 p-6 bg-funzone-blue/5 rounded-xl">
+                  <h2 className="text-xl font-bold mb-4">Important Notes</h2>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Last entry to the park is 2 hours before closing time</li>
+                    <li>Some attractions and experiences may close earlier than the park's closing time</li>
+                    <li>Hours may change during special events - please check our Events page for details</li>
+                    <li>The Water Adventure section closes 30 minutes before the park's closing time</li>
                   </ul>
                 </div>
               </div>
             </TabsContent>
-            
-            <TabsContent value="faqs" className="mt-0">
-              <div>
-                <div className="bg-white p-6 rounded-xl shadow-sm mb-8">
-                  <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
-                  <Accordion type="single" collapsible className="w-full">
-                    <AccordionItem value="item-1">
-                      <AccordionTrigger>Is there a dress code for the park?</AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-gray-600">
-                          We recommend comfortable clothing and walking shoes. Some attractions have specific requirements prohibiting loose articles or open-toed shoes. Clothing with offensive language or imagery is not permitted. For water attractions, appropriate swimwear is required.
-                        </p>
-                      </AccordionContent>
-                    </AccordionItem>
-                    
-                    <AccordionItem value="item-2">
-                      <AccordionTrigger>Can I bring my own food and drinks?</AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-gray-600">
-                          Small snacks, water bottles, and special dietary items are permitted. However, full meals, coolers, glass containers, and alcoholic beverages are not allowed in the park. We offer a variety of dining options catering to different dietary needs, including vegetarian, vegan, and gluten-free options.
-                        </p>
-                      </AccordionContent>
-                    </AccordionItem>
-                    
-                    <AccordionItem value="item-3">
-                      <AccordionTrigger>What should I do if I lose something in the park?</AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-gray-600">
-                          Visit our Lost & Found office located at the Main Guest Services building near the entrance. Items found in the park are brought there. You can also report lost items online through our website or mobile app. We recommend labeling personal items with your name and contact information.
-                        </p>
-                      </AccordionContent>
-                    </AccordionItem>
-                    
-                    <AccordionItem value="item-4">
-                      <AccordionTrigger>Are there height restrictions for rides?</AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-gray-600">
-                          Yes, many attractions have minimum height requirements for safety reasons. These requirements are clearly posted at each attraction entrance and on our website/mobile app. We offer "rider switch" for families with children who don't meet height requirements, allowing adults to take turns on rides while the other stays with the child.
-                        </p>
-                      </AccordionContent>
-                    </AccordionItem>
-                    
-                    <AccordionItem value="item-5">
-                      <AccordionTrigger>What happens if it rains during my visit?</AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-gray-600">
-                          The park remains open during light to moderate rain, though some outdoor attractions may temporarily close for safety reasons. We offer many indoor attractions, shows, and dining experiences to enjoy during inclement weather. Ponchos are available for purchase at various shops throughout the park. We do not offer rain checks or refunds due to weather, but you may consider purchasing weather insurance when buying tickets.
-                        </p>
-                      </AccordionContent>
-                    </AccordionItem>
-                    
-                    <AccordionItem value="item-6">
-                      <AccordionTrigger>Is there a way to avoid long queues for popular attractions?</AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-gray-600">
-                          Yes, we offer several options to reduce wait times. Our Premium Fast Pass gives priority access to most attractions. Single Rider lines are available at select attractions for solo visitors or groups willing to split up. Our mobile app provides real-time wait times to help you plan efficiently. Visiting during off-peak seasons or weekdays typically results in shorter wait times.
-                        </p>
-                      </AccordionContent>
-                    </AccordionItem>
-                    
-                    <AccordionItem value="item-7">
-                      <AccordionTrigger>Are pets allowed in the park?</AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-gray-600">
-                          Only service animals are permitted inside the park. We offer a Pet Care Center near the entrance where guests can leave their pets for the day (additional fee applies). Service animals must remain on a leash or harness at all times and may have restricted access to certain attractions.
-                        </p>
-                      </AccordionContent>
-                    </AccordionItem>
-                    
-                    <AccordionItem value="item-8">
-                      <AccordionTrigger>Do you offer any discounts on tickets?</AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-gray-600">
-                          Yes, we offer various discounts including: Military discounts (active and retired), senior citizen rates, multi-day pass savings, annual pass options, group rates (15+ people), seasonal promotions, and corporate partner discounts. Check our website or contact Guest Services for current offers.
-                        </p>
-                      </AccordionContent>
-                    </AccordionItem>
-                    
-                    <AccordionItem value="item-9">
-                      <AccordionTrigger>Is the park accessible for guests with disabilities?</AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-gray-600">
-                          Absolutely. FUN ZONE is committed to accessibility for all guests. We offer wheelchair-accessible pathways, attractions, dining areas, and restrooms. Complimentary wheelchairs and ECVs (electric convenience vehicles) are available for rent on a first-come, first-served basis. Guests with disabilities may qualify for our Assisted Access Pass, which provides alternative access to attractions. Please visit Guest Services upon arrival for more information and assistance.
-                        </p>
-                      </AccordionContent>
-                    </AccordionItem>
-                    
-                    <AccordionItem value="item-10">
-                      <AccordionTrigger>How far in advance should I book tickets?</AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-gray-600">
-                          We recommend booking tickets at least 1-2 weeks in advance, especially during peak seasons (summer, holidays, and spring break). Online tickets are often discounted compared to gate prices, and advance booking guarantees entry on your desired date. Some special events and holiday periods may sell out months in advance, so plan accordingly.
-                        </p>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
+
+            {/* Tickets & Pricing Content */}
+            <TabsContent value="tickets" className="mt-0">
+              <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                <h2 className="text-2xl font-bold mb-6 flex items-center">
+                  <Ticket className="mr-2 h-5 w-5 text-funzone-blue" />
+                  Admission Options
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <Card className="overflow-hidden border-2 border-funzone-green hover:shadow-lg transition-all duration-300">
+                    <div className="bg-funzone-green text-white p-4">
+                      <h3 className="text-xl font-bold">Day Pass</h3>
+                      <p className="text-sm opacity-90">Full-day access to all zones and attractions</p>
+                    </div>
+                    <div className="p-6">
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-gray-600">Adult (13+)</span>
+                        <span className="font-bold">$79.99</span>
+                      </div>
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-gray-600">Child (3-12)</span>
+                        <span className="font-bold">$59.99</span>
+                      </div>
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-gray-600">Senior (65+)</span>
+                        <span className="font-bold">$69.99</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-600">Infant (0-2)</span>
+                        <span className="font-bold">FREE</span>
+                      </div>
+                    </div>
+                  </Card>
+
+                  <Card className="overflow-hidden border-2 border-funzone-purple hover:shadow-lg transition-all duration-300 relative">
+                    <div className="absolute top-4 right-4 bg-funzone-yellow text-black font-bold text-xs px-2 py-1 rounded-full">
+                      BEST VALUE
+                    </div>
+                    <div className="bg-funzone-purple text-white p-4">
+                      <h3 className="text-xl font-bold">Season Pass</h3>
+                      <p className="text-sm opacity-90">Unlimited visits for the entire season</p>
+                    </div>
+                    <div className="p-6">
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-gray-600">Adult (13+)</span>
+                        <span className="font-bold">$199.99</span>
+                      </div>
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-gray-600">Child (3-12)</span>
+                        <span className="font-bold">$149.99</span>
+                      </div>
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-gray-600">Senior (65+)</span>
+                        <span className="font-bold">$179.99</span>
+                      </div>
+                      <div className="text-sm text-funzone-purple mt-4">
+                        *Includes 10% discount on dining and merchandise
+                      </div>
+                    </div>
+                  </Card>
+
+                  <Card className="overflow-hidden border-2 border-funzone-blue hover:shadow-lg transition-all duration-300">
+                    <div className="bg-funzone-blue text-white p-4">
+                      <h3 className="text-xl font-bold">VIP Experience</h3>
+                      <p className="text-sm opacity-90">Priority access, exclusive experiences</p>
+                    </div>
+                    <div className="p-6">
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-gray-600">Adult (13+)</span>
+                        <span className="font-bold">$149.99</span>
+                      </div>
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-gray-600">Child (3-12)</span>
+                        <span className="font-bold">$119.99</span>
+                      </div>
+                      <div className="text-sm text-gray-600 mt-4">
+                        <ul className="space-y-2">
+                          <li>• Skip-the-line access</li>
+                          <li>• Reserved seating for shows</li>
+                          <li>• Complimentary dining package</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </Card>
                 </div>
-                
-                <div className="bg-funzone-blue/10 rounded-xl p-8 text-center">
-                  <h2 className="text-2xl font-bold mb-4">Still Have Questions?</h2>
-                  <p className="text-lg text-gray-600 mb-6">
-                    Our Guest Services team is ready to assist you with any additional questions or special requests.
+
+                <div className="mt-10">
+                  <h3 className="text-xl font-bold mb-4">Special Packages & Add-ons</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="p-5 bg-gradient-to-br from-funzone-yellow/10 to-funzone-orange/10 rounded-lg">
+                      <h4 className="font-bold text-lg mb-2">Family Bundle (2 Adults + 2 Children)</h4>
+                      <p className="text-gray-600 mb-4">Save 15% on regular admission prices</p>
+                      <div className="font-bold text-funzone-orange text-xl">$239.99</div>
+                    </div>
+                    <div className="p-5 bg-gradient-to-br from-funzone-green/10 to-funzone-teal/10 rounded-lg">
+                      <h4 className="font-bold text-lg mb-2">Group Discounts</h4>
+                      <p className="text-gray-600 mb-4">10+ people: 10% off<br/>20+ people: 15% off</p>
+                      <div className="text-sm font-medium text-funzone-green">Contact our group sales for more info</div>
+                    </div>
+                    <div className="p-5 bg-gradient-to-br from-funzone-blue/10 to-funzone-purple/10 rounded-lg">
+                      <h4 className="font-bold text-lg mb-2">Dining Plan Add-on</h4>
+                      <p className="text-gray-600 mb-4">Pre-purchase meal vouchers and save</p>
+                      <div className="font-bold text-funzone-blue">From $29.99/person</div>
+                    </div>
+                    <div className="p-5 bg-gradient-to-br from-funzone-red/10 to-funzone-purple/10 rounded-lg">
+                      <h4 className="font-bold text-lg mb-2">Photo Pass</h4>
+                      <p className="text-gray-600 mb-4">Unlimited digital photos from your visit</p>
+                      <div className="font-bold text-funzone-red">$49.99</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-10 border-t border-gray-100 pt-8">
+                  <h3 className="text-xl font-bold mb-4 flex items-center">
+                    <DollarSign className="mr-2 h-5 w-5 text-funzone-green" />
+                    Payment Options
+                  </h3>
+                  <p className="text-gray-700 mb-4">
+                    We accept all major credit cards, debit cards, and mobile payment methods. Cash is accepted at the ticket booths only.
                   </p>
-                  <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <a 
-                      href="tel:+1234567890" 
-                      className="bg-funzone-blue hover:bg-funzone-blue/90 text-white font-medium py-2 px-6 rounded-lg transition-colors inline-flex items-center justify-center"
-                    >
-                      <Phone className="mr-2 h-4 w-4" />
-                      Call Us: +1 (234) 567-890
-                    </a>
-                    <a 
-                      href="mailto:info@funzone.com" 
-                      className="border border-funzone-blue text-funzone-blue hover:bg-funzone-blue/10 font-medium py-2 px-6 rounded-lg transition-colors inline-flex items-center justify-center"
-                    >
-                      <Mail className="mr-2 h-4 w-4" />
-                      Email: info@funzone.com
-                    </a>
+                  <div className="bg-funzone-blue/5 p-5 rounded-lg">
+                    <h4 className="font-bold mb-2">Buy Online & Save</h4>
+                    <p className="text-gray-700">
+                      Purchase your tickets online in advance and save 10% off the gate price!
+                    </p>
+                    <button className="mt-4 bg-funzone-blue hover:bg-funzone-blue/90 text-white font-medium py-2 px-6 rounded-full transition-colors">
+                      Buy Tickets Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* Services & Facilities Content */}
+            <TabsContent value="facilities" className="mt-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-white rounded-xl shadow-sm p-6">
+                  <h2 className="text-2xl font-bold mb-6">Guest Services</h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-medium mb-2 text-funzone-blue">Information Centers</h3>
+                      <p className="text-gray-600 mb-2">
+                        Located at the main entrance and in each zone. Our friendly staff will help with:
+                      </p>
+                      <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+                        <li>Park maps and guides</li>
+                        <li>Show schedules</li>
+                        <li>Lost and found</li>
+                        <li>General assistance</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-medium mb-2 text-funzone-green">First Aid Stations</h3>
+                      <p className="text-gray-600 mb-2">
+                        Staffed by qualified medical personnel and equipped to handle minor injuries and health concerns.
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        Locations: Main Entrance Plaza, African Safari Zone, and Space Frontier Zone
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-medium mb-2 text-funzone-purple">Storage Lockers</h3>
+                      <p className="text-gray-600 mb-2">
+                        Secure lockers available for rent to store personal belongings.
+                      </p>
+                      <div className="flex justify-between text-sm">
+                        <span>Small: $8</span>
+                        <span>Medium: $12</span>
+                        <span>Large: $15</span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-medium mb-2 text-funzone-red">Mobile App</h3>
+                      <p className="text-gray-600">
+                        Download our free app for wait times, interactive map, dining reservations, and more!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-xl shadow-sm p-6">
+                  <h2 className="text-2xl font-bold mb-6">Park Amenities</h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-medium mb-2 text-funzone-orange">Accessibility Services</h3>
+                      <p className="text-gray-600 mb-2">
+                        FUN ZONE is committed to providing a comfortable and enjoyable experience for all guests.
+                      </p>
+                      <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+                        <li>Wheelchair rentals</li>
+                        <li>Accessible entrances and pathways</li>
+                        <li>Service animal relief areas</li>
+                        <li>Sensory guides for attractions</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-medium mb-2 text-funzone-blue">Wi-Fi & Charging</h3>
+                      <p className="text-gray-600 mb-2">
+                        Complimentary high-speed Wi-Fi throughout the park. Charging stations available in all rest areas.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-medium mb-2 text-funzone-green">Baby Care Centers</h3>
+                      <p className="text-gray-600 mb-2">
+                        Private nursing areas, changing tables, and baby food warming stations available.
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        Locations: Main Entrance Plaza and European Magic Zone
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-medium mb-2 text-funzone-teal">ATMs & Currency Exchange</h3>
+                      <p className="text-gray-600">
+                        ATMs located throughout the park. Currency exchange services available at Guest Relations.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 bg-white rounded-xl shadow-sm p-6">
+                <h2 className="text-2xl font-bold mb-6">Transportation & Parking</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-lg font-medium mb-3 text-funzone-blue">Parking Options</h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <span className="font-medium">Standard Parking</span>
+                        <span className="text-gray-600">$25 per vehicle</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <span className="font-medium">Premium Parking</span>
+                        <span className="text-gray-600">$45 per vehicle</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <span className="font-medium">Oversized Vehicles</span>
+                        <span className="text-gray-600">$35 per vehicle</span>
+                      </div>
+                    </div>
+                    <p className="mt-3 text-sm text-gray-600">
+                      *Season Pass holders receive 50% off standard parking.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-medium mb-3 text-funzone-purple">Public Transportation</h3>
+                    <p className="text-gray-600 mb-3">
+                      Several options are available to reach FUN ZONE without a car:
+                    </p>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      <li className="p-2 bg-funzone-purple/10 rounded">
+                        <span className="font-medium block">FUN ZONE Express Bus</span>
+                        Direct service from downtown, running every 30 minutes
+                      </li>
+                      <li className="p-2 bg-funzone-red/10 rounded">
+                        <span className="font-medium block">Metro Rail</span>
+                        FUN ZONE station is a 5-minute walk from our entrance
+                      </li>
+                      <li className="p-2 bg-funzone-green/10 rounded">
+                        <span className="font-medium block">Shuttle Services</span>
+                        Complimentary shuttles from partner hotels
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* FAQs Content */}
+            <TabsContent value="faqs" className="mt-0">
+              <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                <h2 className="text-2xl font-bold mb-6 flex items-center">
+                  <HelpCircle className="mr-2 h-5 w-5 text-funzone-purple" />
+                  Frequently Asked Questions
+                </h2>
+
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="faq-1">
+                    <AccordionTrigger>What are the best days to visit to avoid crowds?</AccordionTrigger>
+                    <AccordionContent>
+                      Typically, weekdays (Tuesday through Thursday) have lower attendance levels, especially during non-holiday periods and when local schools are in session. Early mornings and evenings also tend to be less crowded. The busiest times are weekends, holidays, and summer months (June-August).
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-2">
+                    <AccordionTrigger>Are there height restrictions for rides?</AccordionTrigger>
+                    <AccordionContent>
+                      Yes, many of our thrill rides have minimum height requirements for safety reasons. These requirements are clearly posted at each attraction entrance and on our mobile app. We offer "rider switch" services for families with small children so adults can take turns enjoying attractions.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-3">
+                    <AccordionTrigger>Can I bring my own food and drinks into the park?</AccordionTrigger>
+                    <AccordionContent>
+                      Outside food and beverages are not permitted inside FUN ZONE, with exceptions for baby food, special dietary needs, and sealed water bottles. We offer a wide variety of dining options throughout the park to accommodate different tastes and dietary requirements.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-4">
+                    <AccordionTrigger>What happens if it rains during my visit?</AccordionTrigger>
+                    <AccordionContent>
+                      The park remains open during light to moderate rain, though some outdoor attractions may temporarily close for safety reasons. During severe weather, outdoor attractions close but indoor experiences, shows, and dining remain available. We do not offer rain checks or refunds due to weather, but our Season Passes allow you to return on a sunnier day!
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-5">
+                    <AccordionTrigger>Are pets allowed in the park?</AccordionTrigger>
+                    <AccordionContent>
+                      Only service animals are permitted inside FUN ZONE. We offer a Pet Care Center near the main entrance where guests can board their pets for a fee while enjoying the park. Please bring proof of vaccinations if you plan to use this service.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-6">
+                    <AccordionTrigger>How can I become a Season Pass holder?</AccordionTrigger>
+                    <AccordionContent>
+                      Season Passes can be purchased online, at the main ticket booths, or by phone. If you've already purchased a single-day ticket and want to upgrade to a Season Pass, you can do so at Guest Relations within 7 days of your visit, and the price of your day ticket will be applied to the Season Pass price.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-7">
+                    <AccordionTrigger>Does FUN ZONE offer birthday packages?</AccordionTrigger>
+                    <AccordionContent>
+                      Yes! We offer several birthday celebration packages that include admission, a private party area, food, character visits, and special souvenirs. Packages can be customized based on age group and preferences. We recommend booking at least two weeks in advance to secure your preferred date.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-8">
+                    <AccordionTrigger>What accommodations are available for guests with disabilities?</AccordionTrigger>
+                    <AccordionContent>
+                      FUN ZONE is committed to accessibility for all guests. We offer wheelchair rentals, accessible entrances, companion restrooms, and attraction boarding passes for guests who may have difficulty waiting in standard queues. Please visit Guest Services upon arrival to discuss specific accommodations and obtain an accessibility guide.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+
+                <div className="mt-8 bg-funzone-blue/10 p-6 rounded-xl">
+                  <h3 className="text-xl font-bold mb-3">Still have questions?</h3>
+                  <p className="text-gray-700 mb-4">
+                    Our guest services team is ready to assist you with any additional questions or concerns.
+                  </p>
+                  <div className="space-y-4">
+                    <div className="flex items-center">
+                      <PhoneIcon className="h-5 w-5 text-funzone-blue mr-3" />
+                      <span className="text-gray-700">Call us: (555) 123-4567</span>
+                    </div>
+                    <div className="flex items-center">
+                      <MailIcon className="h-5 w-5 text-funzone-green mr-3" />
+                      <span className="text-gray-700">Email: info@funzone.example.com</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -583,7 +474,7 @@ const Information = () => {
           </Tabs>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );

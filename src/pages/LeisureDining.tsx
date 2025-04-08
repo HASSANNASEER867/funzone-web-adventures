@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Search, Coffee, Utensils, IceCream, Pizza, Burger, ChefHat } from "lucide-react";
+import { Search, Coffee, Utensils, IceCream, Pizza, ChefHat } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
@@ -95,7 +95,7 @@ const categories = [
   { id: "all", name: "All Venues", icon: <Utensils className="h-4 w-4" /> },
   { id: "restaurant", name: "Restaurants", icon: <ChefHat className="h-4 w-4" /> },
   { id: "cafe", name: "Cafés", icon: <Coffee className="h-4 w-4" /> },
-  { id: "fast-food", name: "Fast Food", icon: <Burger className="h-4 w-4" /> },
+  { id: "fast-food", name: "Fast Food", icon: <Pizza className="h-4 w-4" /> },
   { id: "dessert", name: "Desserts", icon: <IceCream className="h-4 w-4" /> },
 ];
 
